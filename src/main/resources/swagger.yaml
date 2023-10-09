@@ -41,9 +41,9 @@ components:
     AplicacaoResponse:
       type: object
       properties:
-        id:
-          type: integer
-          description: O ID da aplicação.
+        codigoProduto:
+          type: string
+          description: O código do produto aplicado.
         valor:
           type: number
           format: double

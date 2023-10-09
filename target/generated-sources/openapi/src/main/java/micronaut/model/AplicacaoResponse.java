@@ -30,7 +30,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Serdeable
 @JsonPropertyOrder({
-    AplicacaoResponse.JSON_PROPERTY_ID,
+    AplicacaoResponse.JSON_PROPERTY_CODIGO_PRODUTO,
     AplicacaoResponse.JSON_PROPERTY_VALOR,
     AplicacaoResponse.JSON_PROPERTY_DATA
 })
@@ -38,18 +38,18 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Introspected
 public class AplicacaoResponse {
 
-    public static final String JSON_PROPERTY_ID = "id";
+    public static final String JSON_PROPERTY_CODIGO_PRODUTO = "codigoProduto";
     public static final String JSON_PROPERTY_VALOR = "valor";
     public static final String JSON_PROPERTY_DATA = "data";
 
     /**
-     * O ID da aplicação.
+     * O código do produto aplicado.
      */
     @HardNullable
-    @Schema(name = "id", description = "O ID da aplicação.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_ID)
+    @Schema(name = "codigoProduto", description = "O código do produto aplicado.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_CODIGO_PRODUTO)
     @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
-    private Integer id;
+    private String codigoProduto;
 
     /**
      * O valor da aplicação.
@@ -73,26 +73,26 @@ public class AplicacaoResponse {
     }
 
     /**
-     * O ID da aplicação.
-     * @return the id property value
+     * O código do produto aplicado.
+     * @return the codigoProduto property value
      */
-    public Integer getId() {
-        return id;
+    public String getCodigoProduto() {
+        return codigoProduto;
     }
 
     /**
-     * Set the id property value
+     * Set the codigoProduto property value
      */
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCodigoProduto(String codigoProduto) {
+        this.codigoProduto = codigoProduto;
     }
 
     /**
-     * Set id in a chainable fashion.
+     * Set codigoProduto in a chainable fashion.
      * @return The same instance of AplicacaoResponse for chaining.
      */
-    public AplicacaoResponse id(Integer id) {
-        this.id = id;
+    public AplicacaoResponse codigoProduto(String codigoProduto) {
+        this.codigoProduto = codigoProduto;
         return this;
     }
 
@@ -153,20 +153,20 @@ public class AplicacaoResponse {
             return false;
         }
         AplicacaoResponse aplicacaoResponse = (AplicacaoResponse) o;
-        return Objects.equals(this.id, aplicacaoResponse.id) &&
+        return Objects.equals(this.codigoProduto, aplicacaoResponse.codigoProduto) &&
             Objects.equals(this.valor, aplicacaoResponse.valor) &&
             Objects.equals(this.data, aplicacaoResponse.data);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, valor, data);
+        return Objects.hash(codigoProduto, valor, data);
     }
 
     @Override
     public String toString() {
         return "AplicacaoResponse("
-            + "id: " + getId() + ", "
+            + "codigoProduto: " + getCodigoProduto() + ", "
             + "valor: " + getValor() + ", "
             + "data: " + getData()
             + ")";

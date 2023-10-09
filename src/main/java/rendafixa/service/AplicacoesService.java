@@ -1,29 +1,40 @@
 package rendafixa.service;
 
-import io.micronaut.http.uri.UriBuilder;
 import jakarta.inject.Singleton;
 import micronaut.model.AplicacaoResponse;
+import rendafixa.model.AplicacaoDBModel;
+import rendafixa.model.AplicacoesDBModel;
+import rendafixa.repository.AplicacoesDynamoRepository;
 
-import io.micronaut.http.client.HttpClient;
-
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.net.URI;
 
 @Singleton
 public class AplicacoesService {
 
-    private final HttpClient httpClient;
-    private final URI uri;
+    private final AplicacoesDynamoRepository aplicacoesDynamoRepository;
 
-    public AplicacoesService(HttpClient httpClientParam) {
-        this.httpClient = httpClientParam;
-        this.uri = UriBuilder.of("/repos")
-                .path("releases")
-                .build();
+    public AplicacoesService(AplicacoesDynamoRepository aplicacoesDynamoRepositoryParam) {
+        this.aplicacoesDynamoRepository = aplicacoesDynamoRepositoryParam;
     }
 
+    public List<AplicacaoResponse> listarAplicacoes(String contaCorrente) {
+        List<AplicacaoResponse> aplicacaoResponseList = new ArrayList<>();
 
-    public List<AplicacaoResponse> listarAplicacoes(String contaCorrente){
-        return List.of(new AplicacaoResponse());
+        List<AplicacoesDBModel> aplicacoesDBModelList = aplicacoesDynamoRepository.findByContaCorrente(contaCorrente);
+        aplicacoesDBModelList.stream()
+                .forEach(aplicacoesDBModel -> {
+                    List<AplicacaoDBModel> aplicacoes = aplicacoesDBModel.getAplicacoes();
+                    aplicacoes.stream().forEach(aplicacaoDBModel -> {
+                        AplicacaoResponse aplicacaoResponse = new AplicacaoResponse();
+                        aplicacaoResponse.setData(LocalDate.parse(aplicacaoDBModel.getDataAplicacao()));
+                        aplicacaoResponse.setValor(aplicacaoDBModel.getValor().doubleValue());
+                        aplicacaoResponse.setCodigoProduto(aplicacoesDBModel.getCodigoProduto());
+
+                        aplicacaoResponseList.add(aplicacaoResponse);
+                    });
+                });
+        return aplicacaoResponseList;
     }
 }

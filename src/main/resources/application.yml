@@ -17,3 +17,7 @@ netty:
   default:
     allocator:
       max-order: 3
+
+dynamodb:
+  aplicacoes:
+    table-name: 'APLICACOES_RENDA_FIXA'

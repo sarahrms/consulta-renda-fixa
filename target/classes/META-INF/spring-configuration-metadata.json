@@ -1,0 +1,1 @@
+{"groups":[{"name":"dynamodb.aplicacoes","type":"rendafixa.configuration.AplicacoesDynamoConfiguration"}],"properties":[{"name":"dynamodb.aplicacoes.table-name","type":"java.lang.String","sourceType":"rendafixa.configuration.AplicacoesDynamoConfiguration"}]}
