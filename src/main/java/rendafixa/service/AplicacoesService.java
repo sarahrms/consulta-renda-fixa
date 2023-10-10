@@ -5,7 +5,7 @@ import micronaut.model.AplicacaoResponse;
 import micronaut.model.AplicacaoResponseAplicacoesInner;
 import rendafixa.model.AplicacaoDBModel;
 import rendafixa.model.AplicacoesDBModel;
-import rendafixa.repository.AplicacoesDynamoRepository;
+import rendafixa.repository.aplicacao.AplicacoesDynamoRepository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
