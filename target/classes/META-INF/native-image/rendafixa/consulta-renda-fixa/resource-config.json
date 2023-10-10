@@ -16,9 +16,15 @@
   }, {
     "pattern" : "\\Qapplication.yml\\E"
   }, {
+    "pattern" : "\\QMETA-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/micronaut.model.$ProdutoResponseList$IntrospectionRef\\E"
+  }, {
+    "pattern" : "\\QMETA-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/micronaut.model.$AplicacaoResponseAplicacoesInner$IntrospectionRef\\E"
+  }, {
     "pattern" : "\\QMETA-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/rendafixa.service.$AplicacoesService$Definition$Reference\\E"
   }, {
     "pattern" : "\\Qapplication.properties\\E"
+  }, {
+    "pattern" : "\\QMETA-INF/micronaut/io.micronaut.core.beans.BeanIntrospectionReference/micronaut.model.$ProdutoResponse$IntrospectionRef\\E"
   }, {
     "pattern" : "\\QMETA-INF/micronaut/io.micronaut.inject.BeanDefinitionReference/rendafixa.configuration.$AplicacoesDynamoConfiguration$Intercepted$Definition$Reference\\E"
   }, {

@@ -15,7 +15,9 @@ import java.util.Objects;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import micronaut.model.AplicacaoResponseAplicacoesInner;
 import com.fasterxml.jackson.annotation.*;
 import io.micronaut.serde.annotation.Serdeable;
 import jakarta.validation.constraints.*;
@@ -31,16 +33,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Serdeable
 @JsonPropertyOrder({
     AplicacaoResponse.JSON_PROPERTY_CODIGO_PRODUTO,
-    AplicacaoResponse.JSON_PROPERTY_VALOR,
-    AplicacaoResponse.JSON_PROPERTY_DATA
+    AplicacaoResponse.JSON_PROPERTY_APLICACOES
 })
 @Generated(value = "io.micronaut.openapi.generator.JavaMicronautServerCodegen")
 @Introspected
 public class AplicacaoResponse {
 
     public static final String JSON_PROPERTY_CODIGO_PRODUTO = "codigoProduto";
-    public static final String JSON_PROPERTY_VALOR = "valor";
-    public static final String JSON_PROPERTY_DATA = "data";
+    public static final String JSON_PROPERTY_APLICACOES = "aplicacoes";
 
     /**
      * O código do produto aplicado.
@@ -51,23 +51,11 @@ public class AplicacaoResponse {
     @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
     private String codigoProduto;
 
-    /**
-     * O valor da aplicação.
-     */
     @HardNullable
-    @Schema(name = "valor", description = "O valor da aplicação.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_VALOR)
+    @Schema(name = "aplicacoes", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @JsonProperty(JSON_PROPERTY_APLICACOES)
     @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
-    private Double valor;
-
-    /**
-     * A data da aplicação.
-     */
-    @HardNullable
-    @Schema(name = "data", description = "A data da aplicação.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    @JsonProperty(JSON_PROPERTY_DATA)
-    @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
-    private LocalDate data;
+    private List<AplicacaoResponseAplicacoesInner> aplicacoes;
 
     public AplicacaoResponse() {
     }
@@ -97,50 +85,37 @@ public class AplicacaoResponse {
     }
 
     /**
-     * O valor da aplicação.
-     * @return the valor property value
+     * @return the aplicacoes property value
      */
-    public Double getValor() {
-        return valor;
+    public List<AplicacaoResponseAplicacoesInner> getAplicacoes() {
+        return aplicacoes;
     }
 
     /**
-     * Set the valor property value
+     * Set the aplicacoes property value
      */
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public void setAplicacoes(List<AplicacaoResponseAplicacoesInner> aplicacoes) {
+        this.aplicacoes = aplicacoes;
     }
 
     /**
-     * Set valor in a chainable fashion.
+     * Set aplicacoes in a chainable fashion.
      * @return The same instance of AplicacaoResponse for chaining.
      */
-    public AplicacaoResponse valor(Double valor) {
-        this.valor = valor;
+    public AplicacaoResponse aplicacoes(List<AplicacaoResponseAplicacoesInner> aplicacoes) {
+        this.aplicacoes = aplicacoes;
         return this;
     }
 
     /**
-     * A data da aplicação.
-     * @return the data property value
-     */
-    public LocalDate getData() {
-        return data;
-    }
-
-    /**
-     * Set the data property value
-     */
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    /**
-     * Set data in a chainable fashion.
+     * Add an item to the aplicacoes property in a chainable fashion.
      * @return The same instance of AplicacaoResponse for chaining.
      */
-    public AplicacaoResponse data(LocalDate data) {
-        this.data = data;
+    public AplicacaoResponse addAplicacoesItem(AplicacaoResponseAplicacoesInner aplicacoesItem) {
+        if (this.aplicacoes == null) {
+            this.aplicacoes = new ArrayList<>();
+        }
+        this.aplicacoes.add(aplicacoesItem);
         return this;
     }
 
@@ -154,21 +129,19 @@ public class AplicacaoResponse {
         }
         AplicacaoResponse aplicacaoResponse = (AplicacaoResponse) o;
         return Objects.equals(this.codigoProduto, aplicacaoResponse.codigoProduto) &&
-            Objects.equals(this.valor, aplicacaoResponse.valor) &&
-            Objects.equals(this.data, aplicacaoResponse.data);
+            Objects.equals(this.aplicacoes, aplicacaoResponse.aplicacoes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codigoProduto, valor, data);
+        return Objects.hash(codigoProduto, aplicacoes);
     }
 
     @Override
     public String toString() {
         return "AplicacaoResponse("
             + "codigoProduto: " + getCodigoProduto() + ", "
-            + "valor: " + getValor() + ", "
-            + "data: " + getData()
+            + "aplicacoes: " + getAplicacoes()
             + ")";
     }
 

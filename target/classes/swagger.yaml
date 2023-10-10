@@ -8,8 +8,10 @@ servers:
   - url: http://localhost:8081/consulta-renda-fixa/api
 
 tags:
-  - name: Aplicações
+  - name: Aplicacoes
     description: Aplicações de Renda Fixa
+  - name: Produtos
+    description: Produtos de Renda Fixa
 
 paths:
   /aplicacoes/{contaCorrente}:
@@ -18,7 +20,7 @@ paths:
       description: Retorna uma lista de aplicações.
       operationId: listarAplicacoes
       tags:
-        - aplicacoes
+        - Aplicacoes
       parameters:
         - in: path
           name: contaCorrente
@@ -35,7 +37,22 @@ paths:
                 $ref: "#/components/schemas/AplicacaoResponseList"
         400:
           description: Solicitação inválida
-
+  /produtos:
+    get:
+      summary: Lista de Produtos
+      description: Retorna uma lista de todos os produtos.
+      operationId: listarProdutos
+      tags:
+        - Produtos
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProdutoResponseList"
+        400:
+          description: Solicitação inválida
 components:
   schemas:
     AplicacaoResponse:
@@ -44,15 +61,19 @@ components:
         codigoProduto:
           type: string
           description: O código do produto aplicado.
-        valor:
-          type: number
-          format: double
-          description: O valor da aplicação.
-        data:
-          type: string
-          format: date
-          description: A data da aplicação.
-
+        aplicacoes:
+          type: array
+          items:
+            type: object
+            properties:
+              valor:
+                type: number
+                format: double
+                description: O valor da aplicação.
+              data:
+                type: string
+                format: date
+                description: A data da aplicação.
     AplicacaoResponseList:
       type: object
       properties:
@@ -60,3 +81,22 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/AplicacaoResponse"
+    ProdutoResponse:
+      type: object
+      properties:
+        codigoProduto:
+          type: string
+          description: O código do produto aplicado.
+        nomeProduto:
+          type: string
+          description: O nome do produto aplicado.
+        tipoProduto:
+          type: string
+          description: O tipo do produto aplicado.
+    ProdutoResponseList:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProdutoResponse"

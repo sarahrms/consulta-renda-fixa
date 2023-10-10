@@ -1,9 +1,7 @@
 package rendafixa.model;
 
 import io.micronaut.core.annotation.NonNull;
-import io.micronaut.serde.annotation.Serdeable;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
